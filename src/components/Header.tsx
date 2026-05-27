@@ -59,29 +59,38 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="border-t border-border-warm/60 bg-cream-base px-6 py-6 md:hidden">
-          <nav className="flex flex-col gap-5" aria-label="Navegação mobile">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="label-spaced text-taupe transition-colors hover:text-charcoal"
-                onClick={() => setMobileOpen(false)}
+      {/* Mobile Menu — animado com grid-rows para transição natural de altura */}
+      <div
+        className={`grid md:hidden transition-all duration-300 ease-out ${
+          mobileOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+        }`}
+        aria-hidden={!mobileOpen}
+      >
+        <div className="min-h-0 overflow-hidden">
+          <div className="border-t border-border-warm/60 bg-cream-base px-6 py-6">
+            <nav className="flex flex-col gap-5" aria-label="Navegação mobile">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="label-spaced text-taupe transition-colors duration-150 hover:text-charcoal focus-visible:text-charcoal focus-visible:outline-none"
+                  onClick={() => setMobileOpen(false)}
+                  tabIndex={mobileOpen ? 0 : -1}
+                >
+                  {link.label}
+                </a>
+              ))}
+              <Button
+                variant="outline"
+                className="label-spaced mt-2 w-full rounded-none border-charcoal/40 bg-transparent py-3 text-charcoal hover:border-charcoal hover:bg-charcoal hover:text-cream-base"
+                tabIndex={mobileOpen ? 0 : -1}
               >
-                {link.label}
-              </a>
-            ))}
-            <Button
-              variant="outline"
-              className="label-spaced mt-2 w-full rounded-none border-charcoal/40 bg-transparent py-3 text-charcoal hover:border-charcoal hover:bg-charcoal hover:text-cream-base"
-            >
-              Agendamento
-            </Button>
-          </nav>
+                Agendamento
+              </Button>
+            </nav>
+          </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

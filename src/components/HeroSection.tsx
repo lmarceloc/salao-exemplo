@@ -32,7 +32,7 @@ export function HeroSection() {
               size="lg"
               className="label-spaced rounded-none bg-charcoal px-8 py-4 text-cream-base transition-all hover:bg-dark-bg-alt"
             >
-              Agendar Consulta
+              Agendar um horário
             </Button>
             <a
               href="#cabelo"
@@ -92,7 +92,7 @@ export function HeroSection() {
 
       {/* Bottom scroll indicator */}
       <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex">
-        <div className="h-8 w-px animate-pulse bg-gold/40" />
+        <div className="h-8 w-px motion-safe:animate-pulse bg-gold/40" />
       </div>
     </section>
   );
